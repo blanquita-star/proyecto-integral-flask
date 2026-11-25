@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="formulario-contenedor">
+    <h2>Iniciar Sesión</h2>
+    <form method="POST">
+        <label>Correo Electrónico</label>
+        <input type="email" name="correo" required placeholder="ejemplo@correo.com">
+        
+        <label>Contraseña</label>
+        <input type="password" name="password" required placeholder="••••••••">
+        
+        <button type="submit" class="btn-primario">Entrar</button>
+    </form>
+    <p class="enlace-extra">¿No tienes cuenta? <a href="{{ url_for('registro') }}">Regístrate aquí</a></p>
+</section>
+{% endblock %}

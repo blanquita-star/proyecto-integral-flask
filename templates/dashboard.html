@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+    <h2>Hola, {{ session['usuario_nombre'] }} — Gestión de Actividades</h2>
+    
+    <!-- FORMULARIO CREAR -->
+    <form action="{{ url_for('agregar') }}" method="POST" class="form-crud">
+        <input type="text" name="titulo" placeholder="Título de la actividad" required>
+        <input type="text" name="descripcion" placeholder="Descripción breve" required>
+        <select name="prioridad">
+            <option value="Alta">Prioridad Alta</option>
+            <option value="Media" selected>Prioridad Media</option>
+            <option value="Baja">Prioridad Baja</option>
+        </select>
+        <button type="submit" class="btn-primario">+ Agregar</button>
+    </form>
+
+    <!-- LISTADO Y EDICIÓN -->
+    <div class="lista-tareas">
+        {% for tarea in tareas %}
+        <div class="tarea-card">
+            <form action="{{ url_for('editar', id=tarea['_id']) }}" method="POST">
+                <input type="text" name="titulo" value="{{ tarea['titulo'] }}" required>
+                <input type="text" name="descripcion" value="{{ tarea['descripcion'] }}" required>
+                <select name="prioridad">
+                    <option value="Alta" {% if tarea['prioridad']=='Alta' %}selected{% endif %}>Alta</option>
+                    <option value="Media" {% if tarea['prioridad']=='Media' %}selected{% endif %}>Media</option>
+                    <option value="Baja" {% if tarea['prioridad']=='Baja' %}selected{% endif %}>Baja</option>
+                </select>
+                <select name="estado">
+                    <option value="Pendiente" {% if tarea['estado']=='Pendiente' %}selected{% endif %}>Pendiente</option>
+                    <option value="Completada" {% if tarea['estado']=='Completada' %}selected{% endif %}>Completada</option>
+                </select>
+                <div class="acciones">
+                    <button type="submit" class="btn-editar">Guardar</button>
+                    <a href="{{ url_for('eliminar', id=tarea['_id']) }}" class="btn-eliminar">Eliminar</a>
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <p>No tienes actividades registradas aún. ¡Agrega la primera!</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

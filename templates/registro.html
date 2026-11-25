@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="formulario-contenedor">
+    <h2>Crear Cuenta</h2>
+    <form method="POST">
+        <label>Nombre Completo</label>
+        <input type="text" name="nombre" required placeholder="Tu nombre">
+
+        <label>Correo Electrónico</label>
+        <input type="email" name="correo" required placeholder="ejemplo@correo.com">
+        
+        <label>Contraseña</label>
+        <input type="password" name="password" required placeholder="Crea una contraseña">
+        
+        <button type="submit" class="btn-primario">Registrarme</button>
+    </form>
+</section>
+{% endblock %}

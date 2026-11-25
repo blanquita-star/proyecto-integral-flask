@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+    <h1>Organiza tu día de forma inteligente</h1>
+    <p>Una aplicación web moderna impulsada por Flask, autenticación segura en SQLite y gestión ágil de datos en MongoDB.</p>
+    <div class="hero-botones">
+        <a href="{{ url_for('registro') }}" class="btn-primario">Comenzar Gratis</a>
+        <a href="{{ url_for('login') }}" class="btn-secundario">Ya tengo cuenta</a>
+    </div>
+</section>
+
+<section class="caracteristicas">
+    <div class="card">
+        <h3>Seguridad SQLite</h3>
+        <p>Gestión relacional de cuentas de usuario y validación de credenciales.</p>
+    </div>
+    <div class="card">
+        <h3>Velocidad NoSQL</h3>
+        <p>Almacenamiento flexible de actividades mediante MongoDB.</p>
+    </div>
+    <div class="card">
+        <h3>Arquitectura Full Stack</h3>
+        <p>Integración completa de Frontend semántico y Backend en Python.</p>
+    </div>
+</section>
+{% endblock %}

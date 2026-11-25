@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Digital Full Stack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">AgendaPro</div>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a>
+            {% if session.get('usuario_id') %}
+                <a href="{{ url_for('dashboard') }}">Mi Agenda</a>
+                <a href="{{ url_for('logout') }}" class="btn-nav">Cerrar Sesión</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+                <a href="{{ url_for('registro') }}" class="btn-nav">Registrarse</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alerta {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Proyecto Integral Full Stack - Flask + SQLite + MongoDB &copy; 2026</p>
+    </footer>
+</body>
+</html>
